@@ -1,119 +1,143 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <title>Calculadora de Álcool no Sangue</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 30px;
+      margin: 20px;
       background-color: #f9f9f9;
       color: #333;
     }
     h1 {
       font-size: 24px;
-      margin-bottom: 10px;
     }
-    label {
-      display: inline-block;
-      margin: 10px 5px;
-    }
-    select, input[type="number"] {
-      padding: 5px;
-      font-size: 14px;
+    label, select, input {
+      margin: 8px 5px;
+      display: block;
+      width: 100%;
+      max-width: 400px;
     }
     button {
-      padding: 6px 12px;
-      font-size: 14px;
-      margin-left: 10px;
+      padding: 10px 15px;
+      font-size: 16px;
+      margin: 10px 0;
       cursor: pointer;
+      width: 100%;
+      max-width: 400px;
     }
-    #resultado {
+    #resultado, #simulacao, #seguro {
       background: #fff;
       padding: 15px;
       border-radius: 6px;
       margin-top: 20px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 600px;
+    }
+    @media (min-width: 600px) {
+      label, select, input, button {
+        display: inline-block;
+        width: auto;
+      }
     }
   </style>
 </head>
 <body>
   <h1>Calculadora de Efeitos do Álcool</h1>
-    <p>
-        Esta calculadora foi criada para ajudar você a entender os efeitos do álcool no corpo
-        com base na concentração de etanol no sangue (g/L). Estudos e dados clínicos mostram que
-        níveis superiores a <strong>2,5 g/L</strong> já indicam um quadro de intoxicação grave,
-        com risco de <strong>confusão mental, perda de controle motor, vômitos, inconsciência</strong>
-        e até mesmo <strong>parada respiratória</strong>.
-    </p>
-    <p>
-        Manter a concentração de álcool <strong>abaixo de 2,5 g/L</strong> é essencial para preservar a
-        segurança, a consciência e a capacidade de tomar decisões. Esta ferramenta te ajuda a calcular
-        quanto álcool foi ingerido e quanto falta para atingir esse limite, incentivando o
-        <strong>consumo consciente e responsável</strong>.
-    </p>
+
+  <p>
+    Esta calculadora foi criada para ajudar você a entender os efeitos do álcool no corpo
+    com base na concentração de etanol no sangue (g/L). Estudos e dados clínicos mostram que
+    níveis superiores a <strong>2,5 g/L</strong> já indicam um quadro de intoxicação grave.
+  </p>
+  <p>
+    Manter a concentração de álcool <strong>abaixo de 2,5 g/L</strong> é essencial para preservar a
+    segurança, a consciência e a capacidade de tomar decisões. Esta ferramenta te ajuda a calcular
+    quanto álcool foi ingerido e quanto falta para atingir esse limite.
+  </p>
 
   <label>Peso (kg): <input type="number" id="peso" value="70" min="1"></label>
-
   <label>Sexo:
     <select id="sexo">
       <option value="0.7">Homem</option>
       <option value="0.6">Mulher</option>
     </select>
   </label>
-  <br>
-
+  <p></p>
   <label>Bebida:
     <select id="bebida">
-        <option value="Cerveja Pilsen,350,5">Cerveja Pilsen (350mL - 5%)</option>
-        <option value="Cerveja IPA,350,6.5">Cerveja IPA (350mL - 6.5%)</option>
-        <option value="Cerveja Strong Ale,350,9">Cerveja Strong Ale (350mL - 9%)</option>
+      <option value="Cerveja Pilsen,350,5">Cerveja Pilsen (350mL - 5%)</option>
+      <option value="Cerveja IPA,350,6.5">Cerveja IPA (350mL - 6.5%)</option>
+      <option value="Cerveja Strong Ale,350,9">Cerveja Strong Ale (350mL - 9%)</option>
+    
+      <option value="Vinho Tinto,150,12">Vinho Tinto (150mL - 12%)</option>
+      <option value="Vinho Branco,150,11">Vinho Branco (150mL - 11%)</option>
+      <option value="Vinho do Porto,90,20">Vinho do Porto (90mL - 20%)</option>
       
-        <option value="Vinho Tinto,150,12">Vinho Tinto (150mL - 12%)</option>
-        <option value="Vinho Branco,150,11">Vinho Branco (150mL - 11%)</option>
-        <option value="Vinho do Porto,90,20">Vinho do Porto (90mL - 20%)</option>
-        
-        <option value="Vodka,40,40">Vodka (40mL - 40%)</option>
-        <option value="Cachaça,50,40">Cachaça (50mL - 40%)</option>
-        <option value="Uísque,50,40">Uísque (50mL - 40%)</option>
-        <option value="Conhaque,50,38">Conhaque (50mL - 38%)</option>
-        <option value="Tequila,45,38">Tequila (45mL - 38%)</option>
-        <option value="Rum,45,37.5">Rum (45mL - 37.5%)</option>
-        <option value="Absinto,30,70">Absinto (30mL - 70%)</option>
-      
-        <option value="Saquê,100,16">Saquê (100mL - 16%)</option>
-        <option value="Soju,60,17">Soju (60mL - 17%)</option>
-      
-        <option value="Caipirinha,200,25">Caipirinha (200mL - 25%)</option>
-        <option value="Margarita,150,30">Margarita (150mL - 30%)</option>
-        <option value="Mojito,200,15">Mojito (200mL - 15%)</option>
-        <option value="Piña Colada,200,18">Piña Colada (200mL - 18%)</option>
-        <option value="Negroni,100,30">Negroni (100mL - 30%)</option>
-        <option value="Dry Martini,90,31">Dry Martini (90mL - 31%)</option>
-        <option value="Manhattan,100,33">Manhattan (100mL - 33%)</option>
-        <option value="Old Fashioned,100,32">Old Fashioned (100mL - 32%)</option>
-      
-        <option value="Energético com álcool,269,7">Energético com álcool (269mL - 7%)</option>
-      </select>
+      <option value="Vodka,40,40">Vodka (40mL - 40%)</option>
+      <option value="Cachaça,50,40">Cachaça (50mL - 40%)</option>
+      <option value="Uísque,50,40">Uísque (50mL - 40%)</option>
+      <option value="Conhaque,50,38">Conhaque (50mL - 38%)</option>
+      <option value="Tequila,45,38">Tequila (45mL - 38%)</option>
+      <option value="Rum,45,37.5">Rum (45mL - 37.5%)</option>
+      <option value="Absinto,30,70">Absinto (30mL - 70%)</option>
+    
+      <option value="Saquê,100,16">Saquê (100mL - 16%)</option>
+      <option value="Soju,60,17">Soju (60mL - 17%)</option>
+    
+      <option value="Caipirinha,200,25">Caipirinha (200mL - 25%)</option>
+      <option value="Margarita,150,30">Margarita (150mL - 30%)</option>
+      <option value="Mojito,200,15">Mojito (200mL - 15%)</option>
+      <option value="Piña Colada,200,18">Piña Colada (200mL - 18%)</option>
+      <option value="Negroni,100,30">Negroni (100mL - 30%)</option>
+      <option value="Dry Martini,90,31">Dry Martini (90mL - 31%)</option>
+      <option value="Manhattan,100,33">Manhattan (100mL - 33%)</option>
+      <option value="Old Fashioned,100,32">Old Fashioned (100mL - 32%)</option>
+    
+      <option value="Energético com álcool,269,7">Energético com álcool (269mL - 7%)</option>
+    </select>
   </label>
-
   <label>Doses consumidas: <input type="number" id="doses" value="1" min="1"></label>
   <button onclick="calcular()">Calcular</button>
 
   <div id="resultado"></div>
 
+  <div id="simulacao">
+    <h2>Simulador de tempo</h2>
+    <label>Horas após consumo: <input type="number" id="horas" value="1" min="0"></label>
+    <button onclick="simular()">Simular TAS após tempo</button>
+    <p id="resultadoTempo"></p>
+  </div>
+
+  <div id="seguro">
+    <h2>Plano de Consumo Seguro</h2>
+    <label>Deseja manter-se abaixo de: <input type="number" id="limite" value="2.0" step="0.1"> g/L</label>
+    <button onclick="calcularSeguro()">Ver doses seguras</button>
+    <p id="resultadoSeguro"></p>
+  </div>
+
   <script>
+    let gramasGlobal = 0;
+    let bebidaAtual = "";
+    let volumeAtual = 0;
+    let teorAtual = 0;
+    let pesoGlobal = 70;
+    let rGlobal = 0.7;
+
     function calcular() {
-      const peso = parseFloat(document.getElementById('peso').value);
-      const r = parseFloat(document.getElementById('sexo').value);
-      const bebidaSelect = document.getElementById('bebida').value.split(',');
-      const nome = bebidaSelect[0];
-      const volume = parseFloat(bebidaSelect[1]);
-      const teor = parseFloat(bebidaSelect[2]);
+      pesoGlobal = parseFloat(document.getElementById('peso').value);
+      rGlobal = parseFloat(document.getElementById('sexo').value);
+      const bebidaData = document.getElementById('bebida').value.split(',');
+      bebidaAtual = bebidaData[0];
+      volumeAtual = parseFloat(bebidaData[1]);
+      teorAtual = parseFloat(bebidaData[2]);
       const doses = parseInt(document.getElementById('doses').value);
 
-      const gramas = volume * (teor / 100) * 0.8 * doses;
-      const TAS = gramas / (peso * r);
+      gramasGlobal = volumeAtual * (teorAtual / 100) * 0.8 * doses;
+      const TAS = gramasGlobal / (pesoGlobal * rGlobal);
       const tempoHoras = (TAS / 0.15).toFixed(1);
 
       let comportamento = '';
@@ -125,24 +149,43 @@
       else if (TAS <= 5.0) comportamento = 'Coma';
       else comportamento = 'Morte';
 
-      // Quanto falta para atingir 2,5 g/L
       const objetivo = 2.5;
-      const gramasFaltando = Math.max(0, (objetivo - TAS) * peso * r);
-      const gramasPorDose = volume * (teor / 100) * 0.8;
+      const gramasFaltando = Math.max(0, (objetivo - TAS) * pesoGlobal * rGlobal);
+      const gramasPorDose = volumeAtual * (teorAtual / 100) * 0.8;
       const dosesFaltando = gramasPorDose > 0 ? Math.ceil(gramasFaltando / gramasPorDose) : 0;
-      const mlFaltando = dosesFaltando * volume;
+      const mlFaltando = dosesFaltando * volumeAtual;
 
       document.getElementById('resultado').innerHTML = `
         <h2>Resultado:</h2>
-        <strong>Bebida:</strong> ${nome}<br>
+        <strong>Bebida:</strong> ${bebidaAtual}<br>
         <strong>Doses consumidas:</strong> ${doses}<br>
-        <strong>Álcool ingerido:</strong> ${gramas.toFixed(2)} g<br>
+        <strong>Álcool ingerido:</strong> ${gramasGlobal.toFixed(2)} g<br>
         <strong>Taxa estimada (TAS):</strong> ${TAS.toFixed(2)} g/L<br>
         <strong>Comportamento:</strong> ${comportamento}<br>
         <strong>Tempo para metabolizar:</strong> ${tempoHoras} horas<br>
         <strong>Faltam para 2,5 g/L:</strong> ${gramasFaltando.toFixed(2)} g de álcool<br>
-        <strong>Equivalente a:</strong> ${dosesFaltando} dose(s) ou ${mlFaltando} mL de ${nome}
+        <strong>Equivalente a:</strong> ${dosesFaltando} dose(s) ou ${mlFaltando} mL de ${bebidaAtual}
       `;
+    }
+
+    function simular() {
+      const horas = parseFloat(document.getElementById('horas').value);
+      const TAS_inicial = gramasGlobal / (pesoGlobal * rGlobal);
+      const TAS_final = Math.max(0, TAS_inicial - (0.15 * horas));
+      document.getElementById('resultadoTempo').innerText =
+        `Após ${horas} hora(s), sua estimativa de TAS será de ${TAS_final.toFixed(2)} g/L.`;
+    }
+
+    function calcularSeguro() {
+      const limite = parseFloat(document.getElementById('limite').value);
+      const maxGramas = limite * pesoGlobal * rGlobal;
+      const gramasPorDose = volumeAtual * (teorAtual / 100) * 0.8;
+      const maxDoses = Math.floor(maxGramas / gramasPorDose);
+      const maxMl = maxDoses * volumeAtual;
+
+      document.getElementById('resultadoSeguro').innerHTML =
+        `Para manter-se abaixo de ${limite.toFixed(2)} g/L, você pode consumir até:<br>
+         <strong>${maxDoses} dose(s)</strong> ou <strong>${maxMl} mL</strong> de ${bebidaAtual}`;
     }
   </script>
 </body>
